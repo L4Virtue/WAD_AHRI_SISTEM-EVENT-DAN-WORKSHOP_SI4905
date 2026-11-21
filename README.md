@@ -1,2 +1,1 @@
-# Kelompok-6-SIUUUUUUU-GG
-Kelompok anjay bismillah WIN
+# WAD_AHRI_SISTEM-EVENT-DAN-WORKSHOP_SI4905
