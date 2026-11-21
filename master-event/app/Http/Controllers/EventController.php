@@ -7,22 +7,24 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
-    // 1. Tampilkan daftar event (pengganti index.php)
+    // Bisa diakses semua user yang login (Admin & User biasa)
     public function index()
     {
         $events = Event::orderBy('id', 'desc')->get();
         return view('events.index', compact('events'));
     }
 
-    // 2. Tampilkan form tambah event (pengganti tambah.php)
+    // Hanya Admin (dicek lewat EventPolicy)
     public function create()
     {
+        $this->authorize('create', Event::class);
         return view('events.create');
     }
 
-    // 3. Simpan data event baru ke database
     public function store(Request $request)
     {
+        $this->authorize('create', Event::class);
+
         $request->validate([
             'judul_event' => 'required',
             'deskripsi'   => 'required',
@@ -36,16 +38,18 @@ class EventController extends Controller
         return redirect()->route('events.index')->with('pesan', 'Data event berhasil ditambahkan!');
     }
 
-    // 4. Tampilkan form edit event (pengganti edit.php)
     public function edit($id)
     {
         $event = Event::findOrFail($id);
+        $this->authorize('update', $event);
         return view('events.edit', compact('event'));
     }
 
-    // 5. Update data event di database
     public function update(Request $request, $id)
     {
+        $event = Event::findOrFail($id);
+        $this->authorize('update', $event);
+
         $request->validate([
             'judul_event' => 'required',
             'deskripsi'   => 'required',
@@ -54,16 +58,15 @@ class EventController extends Controller
             'durasi_sesi' => 'required|numeric',
         ]);
 
-        $event = Event::findOrFail($id);
         $event->update($request->all());
 
         return redirect()->route('events.index')->with('pesan', 'Data event berhasil diperbarui!');
     }
 
-    // 6. Hapus data event (pengganti hapus.php)
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
+        $this->authorize('delete', $event);
         $event->delete();
 
         return redirect()->route('events.index')->with('pesan', 'Data event berhasil dihapus!');

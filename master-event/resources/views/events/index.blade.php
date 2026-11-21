@@ -14,8 +14,16 @@
             <a class="navbar-brand fw-bold" href="{{ route('events.index') }}">Sistem Event & Workshop</a>
             <div class="navbar-nav align-items-center">
                 <a class="nav-link active" href="{{ route('events.index') }}">Daftar Event</a>
-                <a class="nav-link" href="{{ route('events.create') }}">Tambah Event</a>
-                <a href="{{ route('logout') }}" class="btn btn-danger btn-sm ms-3" onclick="return confirm('Apakah Anda yakin ingin keluar?')">Logout</a>
+                
+                {{-- Menu Tambah Event di Navbar hanya muncul untuk Admin --}}
+                @can('manage-events')
+                    <a class="nav-link" href="{{ route('events.create') }}">Tambah Event</a>
+                @endcan
+
+                <span class="badge bg-light text-primary ms-3">
+                    {{ auth()->user()->username }} ({{ auth()->user()->role }})
+                </span>
+                <a href="{{ route('logout') }}" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Apakah Anda yakin ingin keluar?')">Logout</a>
             </div>
         </div>
     </nav>
@@ -33,7 +41,11 @@
 
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2 class="h4 text-primary mb-0">Daftar Master Event</h2>
-                <a href="{{ route('events.create') }}" class="btn btn-success">+ Tambah Event Baru</a>
+                
+                {{-- Tombol + Tambah Event Baru hanya muncul untuk Admin --}}
+                @can('manage-events')
+                    <a href="{{ route('events.create') }}" class="btn btn-success">+ Tambah Event Baru</a>
+                @endcan
             </div>
 
             <div class="table-responsive">
@@ -46,7 +58,9 @@
                             <th>Kategori</th>
                             <th>Silabus</th>
                             <th>Durasi Sesi</th>
-                            <th class="text-center">Aksi</th>
+                            @can('manage-events')
+                                <th class="text-center">Aksi</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -62,15 +76,19 @@
                                 </td>
                                 <td>{{ $data->silabus }}</td>
                                 <td>{{ $data->durasi_sesi ?? $data->durasi }} Menit</td>
-                                <td class="text-center text-nowrap">
-                                    <a href="{{ route('events.edit', $data->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    
-                                    <form action="{{ route('events.destroy', $data->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus event ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                    </form>
-                                </td>
+                                
+                                {{-- Kolom tombol Edit & Hapus hanya muncul untuk Admin --}}
+                                @can('manage-events')
+                                    <td class="text-center text-nowrap">
+                                        <a href="{{ route('events.edit', $data->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        
+                                        <form action="{{ route('events.destroy', $data->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus event ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        </form>
+                                    </td>
+                                @endcan
                             </tr>
                         @empty
                             <tr>

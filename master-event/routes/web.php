@@ -53,4 +53,8 @@ Route::get('/logout', function (Request $request) {
 })->name('logout');
 
 // Route Resource CRUD Master Event (index, create, store, edit, update, destroy)
-Route::resource('events', EventController::class)->middleware('auth');
+// Semua user yang sudah login (admin maupun user biasa) bisa melihat tabel daftar event
+Route::get('/events', [EventController::class, 'index'])->middleware('auth')->name('events.index');
+
+// Hanya role 'admin' yang bisa mengakses tambah, simpan, edit, update, dan hapus event
+Route::resource('events', EventController::class)->except(['index', 'show'])->middleware(['auth', 'role:admin']);
