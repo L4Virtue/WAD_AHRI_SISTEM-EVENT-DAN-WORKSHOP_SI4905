@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
             ['username' => 'admin'],
             [
                 'password' => Hash::make('password'),
+    public function run(): void
+    {
+        User::updateOrCreate(
+            ['username' => 'admin'],
+            [
+                'password' => Hash::make('admin123'),
                 'role' => 'admin',
             ]
         );
@@ -33,5 +39,13 @@ class DatabaseSeeder extends Seeder
                 'role' => 'panitia',
             ]
         );
+        User::firstOrCreate(
+            ['username' => 'petugas'],
+            [
+                'password' => Hash::make('petugas123'),
+                'role' => 'petugas',
+            ]
+        );
+        
     }
 }

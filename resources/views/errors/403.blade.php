@@ -46,5 +46,15 @@
             </a>
         </div>
     </main>
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1 class="display-1">403</h1>
+        <h2>Akses Ditolak</h2>
+        <p>Anda tidak memiliki izin untuk mengakses halaman ini.</p>
+        <a href="{{ route('tiket.daftar') }}" class="btn btn-primary">
+            Kembali ke Daftar Tiket
+        </a>
+    </div>
 </body>
 </html>

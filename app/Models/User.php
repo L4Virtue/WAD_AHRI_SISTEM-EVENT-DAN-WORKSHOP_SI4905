@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+ Erlinda
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+ main
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +12,9 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+ Erlinda
     /** @use HasFactory<UserFactory> */
+ main
     use HasFactory, Notifiable;
 
     /**
@@ -19,10 +23,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
+Erlinda
         'username',
         'password',
         'role',
     ];
+
+    'username',
+    'password',
+    'role',
+];
+main
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,12 +53,22 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+Erlinda
             'password' => 'hashed',
+            'password' => 'hashed',
+ main
         ];
     }
 
     public function hasRole(string ...$roles): bool
+ Erlinda
     {
         return in_array($this->role, $roles, true);
     }
+
+{
+    return in_array($this->role, $roles, true);
+}
+
+ main
 }
