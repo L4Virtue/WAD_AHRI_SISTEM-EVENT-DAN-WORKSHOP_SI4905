@@ -1063,6 +1063,16 @@
         },
         {
             "name": "laravel/framework",
+            "version": "v12.70.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "e09fc54263d1a56cfe1709958fcbb22a4159b1e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/e09fc54263d1a56cfe1709958fcbb22a4159b1e3",
+                "reference": "e09fc54263d1a56cfe1709958fcbb22a4159b1e3",
             "version": "v12.70.0",
             "source": {
                 "type": "git",
@@ -1281,6 +1291,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+            "time": "2026-10-21T12:55:36+00:00"
             "time": "2026-10-13T13:24:10+00:00"
         },
         {
@@ -2241,6 +2252,16 @@
         },
         {
             "name": "nette/schema",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/schema.git",
+                "reference": "af9fa8a86bfca9b02b10346220db26e62ef942ec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/schema/zipball/af9fa8a86bfca9b02b10346220db26e62ef942ec",
+                "reference": "af9fa8a86bfca9b02b10346220db26e62ef942ec",
             "version": "v1.3.7",
             "source": {
                 "type": "git",
@@ -2258,6 +2279,10 @@
                 "php": "8.1 - 8.6"
             },
             "require-dev": {
+                "nette/phpstan-rules": "^1.0.7",
+                "nette/tester": "^2.6",
+                "phpstan/extension-installer": "^1.4@stable",
+                "phpstan/phpstan": "^2.3@stable",
                 "nette/phpstan-rules": "^1.0",
                 "nette/tester": "^2.6",
                 "phpstan/extension-installer": "^1.4@stable",
@@ -2267,6 +2292,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
+                    "dev-master": "1.4-dev"
                     "dev-master": "1.3-dev"
                 }
             },
@@ -2288,6 +2314,23 @@
                 {
                     "name": "David Grudl",
                     "homepage": "https://davidgrudl.com"
+                }
+            ],
+            "description": "📐 Nette Schema: validates and normalizes data such as configuration or API input against a schema described in a few readable lines of PHP, with precise error messages.",
+            "homepage": "https://doc.nette.org/schema",
+            "keywords": [
+                "configuration",
+                "data validation",
+                "nette",
+                "normalization",
+                "schema",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/nette/schema/issues",
+                "source": "https://github.com/nette/schema/tree/v1.4.0"
+            },
+            "time": "2026-10-22T02:12:50+00:00"
                 },
                 {
                     "name": "Nette Community",

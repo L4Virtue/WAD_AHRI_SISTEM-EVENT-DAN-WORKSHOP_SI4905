@@ -6,6 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('username', 50)->unique();
+            $table->string('password');
+            $table->string('role', 20)->default('admin');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+       Schema::create('sessions', function (Blueprint $table) {
     
     public function up(): void
     {
@@ -36,6 +51,12 @@ Schema::create('users', function (Blueprint $table) {
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('users');
     
     public function down(): void
     {
